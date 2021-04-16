@@ -1,0 +1,3 @@
+[submodule "3rd-party/alog"]
+	path = 3rd-party/alog
+	url = https://github.com/ihor-drachuk/alog.git
