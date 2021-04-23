@@ -7,14 +7,6 @@
 
 namespace ALog {
 
-ConsoleQt2::ConsoleQt2()
-{
-}
-
-ConsoleQt2::~ConsoleQt2()
-{
-}
-
 void ConsoleQt2::writeBuffer(const Buffer& buffer)
 {
     QDebug (QMessageLogger::*logFunc)() const = nullptr;

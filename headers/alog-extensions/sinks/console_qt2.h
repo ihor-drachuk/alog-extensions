@@ -9,8 +9,8 @@ namespace ALog {
 class ConsoleQt2 : public ISinkWithFmtCnv
 {
 public:
-    ConsoleQt2();
-    ~ConsoleQt2();
+    ConsoleQt2() = default;
+    ~ConsoleQt2() = default;
 
 protected:
     void writeBuffer(const Buffer& buffer) override;
