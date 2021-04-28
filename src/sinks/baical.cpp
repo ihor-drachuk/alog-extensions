@@ -97,7 +97,7 @@ void SinkBaical::write(const Record& record)
                         (eP7Trace_Level)record.severity,
                         impl().hModule,
                         record.line,
-                        record.file,
+                        record.filenameFull,
                         record.func,
                         format,
                         msg);

@@ -13,18 +13,18 @@ void ConsoleQt2::writeBuffer(const Buffer& buffer)
     auto record = getCurrentRecord();
 
     switch (record->severity) {
-        case ALog::Severity::Verbose: logFunc = &QMessageLogger::debug;
-        case ALog::Severity::Debug: logFunc = &QMessageLogger::debug;
-        case ALog::Severity::Info: logFunc = &QMessageLogger::info;
-        case ALog::Severity::Warning: logFunc = &QMessageLogger::warning;
-        case ALog::Severity::Error: logFunc = &QMessageLogger::critical;
-        case ALog::Severity::Fatal: logFunc = &QMessageLogger::critical;
+        case ALog::Severity::Verbose: logFunc = &QMessageLogger::debug; break;
+        case ALog::Severity::Debug: logFunc = &QMessageLogger::debug; break;
+        case ALog::Severity::Info: logFunc = &QMessageLogger::info; break;
+        case ALog::Severity::Warning: logFunc = &QMessageLogger::warning; break;
+        case ALog::Severity::Error: logFunc = &QMessageLogger::critical; break;
+        case ALog::Severity::Fatal: logFunc = &QMessageLogger::critical; break;
     }
 
     assert(logFunc);
 
-    QMessageLogger qtLogger(record->file, record->line, record->func, nullptr);
-    (qtLogger.*logFunc)() << (const char*)buffer.data();
+    QMessageLogger qtLogger(record->filenameFull, record->line, record->func, nullptr);
+    (qtLogger.*logFunc)().noquote() << QString::fromUtf8((const char*)buffer.data(), buffer.size());
 }
 
 } // namespace ALog
