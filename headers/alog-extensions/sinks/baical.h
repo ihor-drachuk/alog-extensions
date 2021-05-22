@@ -7,6 +7,8 @@ namespace Ext {
 
 #ifdef ALOG_HAS_P7_LIBRARY
 
+#define ALOG_HAS_SINK_BAICAL 1
+
 class SinkBaical : public ISink
 {
 public:
