@@ -6,6 +6,7 @@
 #include <QTextStream>
 
 namespace ALog {
+namespace Ext {
 
 struct ConsoleQt::impl_t
 {
@@ -49,6 +50,7 @@ void ConsoleQt::writeBuffer(const Buffer& buffer)
     impl().stream->flush();
 }
 
+} // namespace Ext
 } // namespace ALog
 
 #endif // ALOG_HAS_QT_LIBRARY

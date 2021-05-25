@@ -9,7 +9,6 @@
 #include <string>
 
 namespace ALog {
-
 namespace Ext {
 
 #ifdef ALOG_HAS_P7_LIBRARY
@@ -106,5 +105,4 @@ void SinkBaical::write(const Record& record)
 #endif // ALOG_HAS_P7_LIBRARY
 
 } // namespace Ext
-
 } // namespace ALog

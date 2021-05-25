@@ -2,7 +2,6 @@
 #include <alog/record.h>
 
 namespace ALog {
-
 namespace Ext {
 
 #ifdef ALOG_HAS_P7_LIBRARY
@@ -24,5 +23,4 @@ private:
 #endif // ALOG_HAS_P7_LIBRARY
 
 } // namespace Ext
-
 } // namespace ALog

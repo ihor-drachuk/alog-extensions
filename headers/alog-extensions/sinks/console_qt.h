@@ -4,6 +4,7 @@
 class QTextStream;
 
 namespace ALog {
+namespace Ext {
 
 #ifdef ALOG_WINDOWS
 
@@ -33,4 +34,5 @@ using ConsoleQt = SinkStdStream;
 
 #endif // ALOG_WINDOWS
 
+} // namespace Ext
 } // namespace ALog

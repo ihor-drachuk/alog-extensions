@@ -6,6 +6,7 @@
 #include <QDebug>
 
 namespace ALog {
+namespace Ext {
 
 void ConsoleQt2::writeBuffer(const Buffer& buffer)
 {
@@ -24,9 +25,10 @@ void ConsoleQt2::writeBuffer(const Buffer& buffer)
     assert(logFunc);
 
     QMessageLogger qtLogger(record->filenameFull, record->line, record->func, nullptr);
-    (qtLogger.*logFunc)().noquote() << QString::fromUtf8((const char*)buffer.data(), buffer.size());
+    (qtLogger.*logFunc)().noquote() << QString::fromUtf8((const char*)buffer.data(), static_cast<int>(buffer.size()));
 }
 
+} // namespace Ext
 } // namespace ALog
 
 #endif // ALOG_HAS_QT_LIBRARY

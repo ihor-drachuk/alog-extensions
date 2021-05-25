@@ -2,6 +2,7 @@
 #include <alog/sink.h>
 
 namespace ALog {
+namespace Ext {
 
 #ifdef ALOG_WINDOWS
 
@@ -23,4 +24,5 @@ using ConsoleQt2 = SinkStdStream;
 
 #endif // ALOG_WINDOWS
 
+} // namespace Ext
 } // namespace ALog
