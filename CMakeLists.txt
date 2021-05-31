@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
 PROJECT(alog-extensions)
 
+option(ALOG_EXT_ENABLE_TESTS     "ALog-ext: Enable tests" OFF)
+option(ALOG_EXT_ENABLE_BENCHMARK "ALog-ext: Enable benchmark" OFF)
+
 if (NOT TARGET alog)
     add_subdirectory(3rd-party/alog)
 endif()
@@ -20,6 +23,8 @@ endif()
 find_package(Qt5 QUIET OPTIONAL_COMPONENTS Core)
 
 if(Qt5_FOUND)
-    target_link_libraries(alog-extensions PRIVATE Qt5::Core)
+    target_link_libraries(alog-extensions PUBLIC Qt5::Core)
     target_compile_definitions(alog-extensions PUBLIC -DALOG_HAS_QT_LIBRARY)
 endif()
+
+add_subdirectory(tests)
