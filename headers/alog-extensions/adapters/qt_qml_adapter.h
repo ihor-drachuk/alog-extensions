@@ -10,7 +10,6 @@ namespace Ext {
 class QtQmlAdapter : public ALog::Internal::Singleton<QtQmlAdapter>
 {
     friend class ConsoleQt2;
-    friend void messageOutput(QtMsgType type, const QMessageLogContext& context, const QString& msg);
 public:
     QtQmlAdapter(bool forwardToNative = false);
     QtQmlAdapter(const QtQmlAdapter&) = delete;
@@ -20,6 +19,7 @@ private:
     using Handler = decltype(qInstallMessageHandler(nullptr));
 
     Handler getBackHandler() const;
+    static void messageOutput(QtMsgType type, const QMessageLogContext& context, const QString& msg);
 
 private:
     ALOG_DECLARE_PIMPL

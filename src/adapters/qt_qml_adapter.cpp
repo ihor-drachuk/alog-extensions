@@ -9,8 +9,6 @@
 namespace ALog {
 namespace Ext {
 
-static void messageOutput(QtMsgType type, const QMessageLogContext& context, const QString& msg);
-
 struct QtQmlAdapter::impl_t
 {
     DEFINE_ALOGGER_MODULE(QtQmlAdapter);
@@ -37,7 +35,7 @@ QtQmlAdapter::Handler QtQmlAdapter::getBackHandler() const
     return impl().oldHandler ? impl().oldHandler : nullptr;
 }
 
-static void messageOutput(QtMsgType type, const QMessageLogContext& context, const QString& msg)
+void QtQmlAdapter::messageOutput(QtMsgType type, const QMessageLogContext& context, const QString& msg)
 {
     auto thisPtr = QtQmlAdapter::instance();
 
