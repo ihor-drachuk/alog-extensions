@@ -1,5 +1,6 @@
 #pragma once
 #include <alog/sink.h>
+#include <alog/sinks/console.h>
 
 class QTextStream;
 
@@ -9,28 +10,24 @@ namespace Ext {
 #ifdef ALOG_WINDOWS
 
 #ifdef ALOG_HAS_QT_LIBRARY
-class ConsoleQt : public ISinkWithFmtCnv
+class ConsoleQt : public ISink
 {
 public:
-    enum class Stream {
-        StdOut,
-        StdErr
-    };
+    enum class Stream {StdOut, StdErr};
 
     ConsoleQt(Stream stream);
     ~ConsoleQt();
 
-protected:
-    void writeBuffer(const Buffer& buffer) override;
+    void write(const Buffer& buffer, const Record&) override;
 
 private:
     ALOG_DECLARE_PIMPL
 };
 #endif // ALOG_HAS_QT_LIBRARY
 
-#else
+#else // ALOG_WINDOWS
 
-using ConsoleQt = SinkStdStream;
+using ConsoleQt = ::ALog::Sinks::Console;
 
 #endif // ALOG_WINDOWS
 

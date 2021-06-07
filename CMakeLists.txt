@@ -15,6 +15,14 @@ set_property(TARGET alog-extensions PROPERTY CXX_STANDARD 17)
 target_link_libraries(alog-extensions PUBLIC alog)
 target_include_directories(alog-extensions PUBLIC headers)
 
+if(MSVC)
+    target_link_options(alog-extensions PRIVATE "/ignore:4221")
+    set_target_properties(alog-extensions PROPERTIES STATIC_LIBRARY_OPTIONS "/ignore:4221")
+    target_compile_definitions(alog-extensions
+        PRIVATE _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING
+        PUBLIC _CRT_SECURE_NO_WARNINGS _CRT_NONSTDC_NO_WARNINGS)
+endif()
+
 if(TARGET p7)
     target_link_libraries(alog-extensions PRIVATE p7)
     target_compile_definitions(alog-extensions PUBLIC -DALOG_HAS_P7_LIBRARY)

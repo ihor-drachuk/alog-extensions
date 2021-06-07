@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(test-alog-2 LANGUAGES CXX)
+project(test-alog-extensions-2 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(test-alog-2 main.cpp)
-target_link_libraries(test-alog-2 PRIVATE alog alog-extensions)
+add_executable(test-alog-extensions-2 main.cpp)
+target_link_libraries(test-alog-extensions-2 PRIVATE alog alog-extensions)
 
-target_compile_options(test-alog-2 PRIVATE
+target_compile_options(test-alog-extensions-2 PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>:/WX>
     $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Werror>
 )

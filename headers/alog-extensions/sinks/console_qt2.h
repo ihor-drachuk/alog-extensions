@@ -1,5 +1,6 @@
 #pragma once
 #include <alog/sink.h>
+#include <alog/sinks/console.h>
 
 namespace ALog {
 namespace Ext {
@@ -7,20 +8,19 @@ namespace Ext {
 #ifdef ALOG_WINDOWS
 
 #ifdef ALOG_HAS_QT_LIBRARY
-class ConsoleQt2 : public ISinkWithFmtCnv
+class ConsoleQt2 : public ISink
 {
 public:
     ConsoleQt2() = default;
     ~ConsoleQt2() = default;
 
-protected:
-    void writeBuffer(const Buffer& buffer) override;
+    void write(const Buffer& buffer, const Record& record) override;
 };
 #endif // ALOG_HAS_QT_LIBRARY
 
 #else
 
-using ConsoleQt2 = SinkStdStream;
+using ConsoleQt2 = ALog::Sinks::Console;
 
 #endif // ALOG_WINDOWS
 

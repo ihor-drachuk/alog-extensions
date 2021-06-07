@@ -36,8 +36,10 @@ ConsoleQt::~ConsoleQt()
     delete impl().stream;
 }
 
-void ConsoleQt::writeBuffer(const Buffer& buffer)
+void ConsoleQt::write(const Buffer& buffer, const Record&)
 {
+    assert(buffer.size());
+
     const auto sz = buffer.size();
 
     impl().buffer.resize(sz + 2);

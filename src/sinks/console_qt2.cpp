@@ -9,16 +9,17 @@
 namespace ALog {
 namespace Ext {
 
-void ConsoleQt2::writeBuffer(const Buffer& buffer)
+void ConsoleQt2::write(const Buffer& buffer, const Record& record)
 {
-    auto record = getCurrentRecord();
+    assert(buffer.size());
+
     auto backHandler = QtQmlAdapter::exists() ? QtQmlAdapter::instance()->getBackHandler() : nullptr;
 
     if (backHandler) {
         QtMsgType type;
         QMessageLogContext ctx;
 
-        switch (record->severity) {
+        switch (record.severity) {
             case ALog::Severity::Verbose: type = QtDebugMsg;    break;
             case ALog::Severity::Debug:   type = QtDebugMsg;    break;
             case ALog::Severity::Info:    type = QtInfoMsg;     break;
@@ -26,20 +27,20 @@ void ConsoleQt2::writeBuffer(const Buffer& buffer)
             case ALog::Severity::Error:   type = QtCriticalMsg; break;
             case ALog::Severity::Fatal:   type = QtFatalMsg;    break;
             default:
-                assert(!"Unexpected 'record->severity'!");
+                assert(!"Unexpected 'record.severity'!");
         }
 
-        //ctx.file = record->filenameOnly;
-        //ctx.line = record->line;
-        //ctx.category = record->module;
-        //ctx.function = record->func;
+        //ctx.file = record.filenameOnly;
+        //ctx.line = record.line;
+        //ctx.category = record.module;
+        //ctx.function = record.func;
 
         backHandler(type, ctx, QString::fromUtf8((const char*)buffer.data(), static_cast<int>(buffer.size())));
 
     } else {
         QDebug (QMessageLogger::*logFunc)() const = nullptr;
 
-        switch (record->severity) {
+        switch (record.severity) {
             case ALog::Severity::Verbose: logFunc = &QMessageLogger::debug;    break;
             case ALog::Severity::Debug:   logFunc = &QMessageLogger::debug;    break;
             case ALog::Severity::Info:    logFunc = &QMessageLogger::info;     break;
@@ -50,7 +51,7 @@ void ConsoleQt2::writeBuffer(const Buffer& buffer)
 
         assert(logFunc);
 
-        QMessageLogger qtLogger(record->filenameFull, record->line, record->func, nullptr);
+        QMessageLogger qtLogger(record.filenameFull, record.line, record.func, nullptr);
         (qtLogger.*logFunc)().noquote() << QString::fromUtf8((const char*)buffer.data(), static_cast<int>(buffer.size()));
     }
 }

@@ -14,7 +14,7 @@ public:
     SinkBaical();
     ~SinkBaical() override;
 
-    void write(const Record& record) override;
+    void write(const Buffer& buffer, const Record& record) override;
 
 private:
     ALOG_DECLARE_PIMPL

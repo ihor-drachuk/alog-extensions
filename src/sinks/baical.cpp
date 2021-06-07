@@ -85,7 +85,7 @@ SinkBaical::~SinkBaical()
         impl().client->Release();
 }
 
-void SinkBaical::write(const Record& record)
+void SinkBaical::write(const Buffer& /*buffer*/, const Record& record)
 {
     if (!impl().client || !impl().trace) return;
 
