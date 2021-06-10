@@ -9,7 +9,9 @@ namespace Ext {
 
 class QtQmlAdapter : public ALog::Internal::Singleton<QtQmlAdapter>
 {
+#ifdef ALOG_WINDOWS
     friend class ConsoleQt2;
+#endif
 public:
     QtQmlAdapter(bool forwardToNative = false);
     QtQmlAdapter(const QtQmlAdapter&) = delete;
