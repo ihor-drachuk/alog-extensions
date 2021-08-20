@@ -5,7 +5,7 @@ project(test-alog-extensions-2 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(test-alog-extensions-2 main.cpp)
+add_executable(test-alog-extensions-2 test-alog-ext-2-main.cpp)
 target_link_libraries(test-alog-extensions-2 PRIVATE alog alog-extensions)
 
 target_compile_options(test-alog-extensions-2 PRIVATE
