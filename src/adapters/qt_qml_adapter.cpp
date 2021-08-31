@@ -50,7 +50,9 @@ void QtQmlAdapter::messageOutput(QtMsgType type, const QMessageLogContext& conte
             assert(!"Unexpected type in `messageOutput`!");
     }
 
-    auto record = Record::create(severity, context.line, context.file, ALog::Internal::extractFileNameOnly(context.file), context.function);
+    static const char* const emptyString = "";
+
+    auto record = Record::create(severity, context.line, context.file ? context.file : emptyString, context.file ? ALog::Internal::extractFileNameOnly(context.file) : emptyString, context.function ? context.function : emptyString);
     record.module = context.category;
 
     record.flagsOn(Record::Flags::Flush);
