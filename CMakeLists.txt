@@ -11,7 +11,7 @@ endif()
 FILE(GLOB_RECURSE SOURCES src/*.cpp src/*.h headers/*.h)
 
 add_library(alog-extensions STATIC ${SOURCES})
-set_property(TARGET alog-extensions PROPERTY CXX_STANDARD 17)
+target_compile_features(alog-extensions PUBLIC cxx_std_17)
 target_link_libraries(alog-extensions PUBLIC alog)
 target_include_directories(alog-extensions PUBLIC headers)
 
