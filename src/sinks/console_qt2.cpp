@@ -11,7 +11,8 @@ namespace Ext {
 
 void ConsoleQt2::write(const Buffer& buffer, const Record& record)
 {
-    assert(buffer.size());
+    if (buffer.size() == 0)
+        return;
 
     auto backHandler = QtQmlAdapter::exists() ? QtQmlAdapter::instance()->getBackHandler() : nullptr;
 
